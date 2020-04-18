@@ -3,4 +3,14 @@
 
     <string name="EnterPIN">Enter Your Security PIN</string>
     <string name="ChangePIN">Change PIN</string>
+    <string name="account_manager">Account\nManager</string>
+    <string name="analysis_nreport">Analysis\nReport</string>
+    <string name="generate_nreport">Generate\nReport</string>
+
+    <string name="PersonInfo">Add Person Information</string>
+
+    <string name="EnterName">Enter Name</string>
+    <string name="MobileNumber">Mobile Number</string>
+    <string name="Date">Date</string>
+    <string name="Address">Address</string>
 </resources>
