@@ -24,6 +24,21 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".LoginActivity" />
 
+        <activity android:name=".PdfGenrateActivity" />
+        <activity android:name=".CreditDebitOfPersonActivity" />
+        <activity android:name=".AddViewDeleteTransactionActivity" />
+        <activity android:name=".GetDateWiseReportActivity" />
+
+        <provider
+            android:name="com.account.manager.app.GenericFileProvider"
+            android:authorities="com.account.manager.app.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
     </application>
 
 </manifest>

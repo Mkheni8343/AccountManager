@@ -13,4 +13,19 @@
     <string name="MobileNumber">Mobile Number</string>
     <string name="Date">Date</string>
     <string name="Address">Address</string>
+
+    <string name="Name">Name :</string>
+    <string name="OpeningDate">Opening Date :</string>
+    <string name="Number">Number :</string>
+    <string name="Address_">Address :</string>
+
+    <string name="PersonDetails">Person Details</string>
+    <string name="AddTransaction">Add Transaction</string>
+
+    <string name="Credit">Credit ( + )</string>
+    <string name="Debit">Debit ( - )</string>
+
+    <string name="BalanceAmount">Balance Amount :</string>
+
+    <string name="reportnote">Note :this report work properly if dates between same month.</string>
 </resources>

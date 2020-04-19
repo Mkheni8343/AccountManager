@@ -40,8 +40,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:background="@drawable/btn_back_all"
+                android:textColor="#fff"
+                android:textSize="18dp"
+                android:textStyle="bold"
                 android:text="Done"
-                android:textColor="#000" />
+                android:typeface="serif" />
 
             <TextView
                 android:id="@+id/forgot"

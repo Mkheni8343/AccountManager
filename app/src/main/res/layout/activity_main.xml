@@ -36,7 +36,7 @@
                         android:layout_height="match_parent"
                         android:background="@drawable/button_back"
                         android:gravity="center"
-                        android:text="Add\nParty"
+                        android:text="Add\nPerson"
                         android:textAllCaps="false"
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="18dp" />

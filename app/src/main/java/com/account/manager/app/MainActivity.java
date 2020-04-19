@@ -1,17 +1,11 @@
 package com.account.manager.app;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
-import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Build.VERSION;
 import android.os.Bundle;
-import android.os.Environment;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
@@ -19,37 +13,33 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     public static final int MULTIPLE_PERMISSIONS = 1;
     MainApplication mainApplication;
-    TextView add_party;
+    TextView add_person;
     TextView trancation;
     TextView report;
     TextView generate_report;
     Dialog dialog;
 
+    @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView((int) R.layout.activity_main);
         mainApplication = (MainApplication) getApplicationContext();
-        add_party = findViewById(R.id.add_party);
+        add_person = findViewById(R.id.add_party);
         trancation = findViewById(R.id.trancation);
         report = findViewById(R.id.report);
         generate_report = findViewById(R.id.generate_report);
         if (VERSION.SDK_INT >= 23) {
             checkPermissions();
         }
-        add_party.setOnClickListener(new OnClickListener() {
+        add_person.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 //TODO open add person activity
@@ -61,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //TODO open add trancation activity
+                startActivity(new Intent(getApplicationContext(), AddViewDeleteTransactionActivity.class));
             }
         });
 
@@ -68,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //TODO open show transation date wise activity
+                startActivity(new Intent(getApplicationContext(), GetDateWiseReportActivity.class));
             }
         });
 
@@ -75,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //TODO open show all generated reports activity
+                startActivity(new Intent(getApplicationContext(), PdfGenrateActivity.class));
             }
         });
     }
