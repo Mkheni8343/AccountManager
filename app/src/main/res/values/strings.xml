@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AccountManager</string>
+    <string name="app_name">Account Manager</string>
 
     <string name="EnterPIN">Enter Your Security PIN</string>
     <string name="ChangePIN">Change PIN</string>

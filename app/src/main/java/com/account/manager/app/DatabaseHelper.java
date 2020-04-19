@@ -11,16 +11,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String KEY_Balance = "balanceamt";
     public static final String KEY_Credit = "creditamt";
     public static final String KEY_Address = "address";
-    public static final String KEY_DATE = "date";
     public static final String KEY_DATEPay = "paydate";
     public static final String KEY_Debit = "debitamt";
-    public static final String KEY_ID = "id";
     public static final String KEY_Note = "note";
-    public static final String KEY_PartyName = "partyname";
     public static final String KEY_NAME = "name";
     public static final String KEY_RowID = "rowid";
     public static final String KEY_Number = "phoneno";
-    public static final String KEY_TID = "tid";
     private static final String DATABASE_NAME = "Account_DB";
     private static final int DATABASE_VERSION = 1;
     private static final String TABLE_PersonRecord = "tblrecords";
@@ -97,21 +93,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sb.append("SELECT tid,debitamt,creditamt,balanceamt,paydate,note FROM tbltransaction WHERE paydate like '");
         sb.append(str);
         sb.append("%' order by tid desc");
-        return readableDatabase.rawQuery(sb.toString(), null);
-    }
-
-    public Cursor getreprtfilter(String str, String str2) {
-        SQLiteDatabase readableDatabase = getReadableDatabase();
-        StringBuilder sb = new StringBuilder();
-        sb.append("SELECT tid,debitamt,creditamt,balanceamt,paydate,note FROM tbltransaction where (strftime('%s',date(substr(paydate, 7, 4) || '-' || substr(paydate, 4, 2) || '-' || substr(paydate, 1, 2)))>= strftime('%s',date('");
-        sb.append(str);
-        sb.append("')) and strftime('%s',date(substr(paydate, 7, 4) || '-' || substr(paydate, 4, 2) || '-' || substr(paydate, 1, 2)))<=strftime('%s',date('");
-        sb.append(str2);
-        sb.append("')) or (strftime('%s',date('20' || substr(paydate, 7, 2) || '-' || substr(paydate, 4, 2) || '-' || substr(paydate, 1, 2)))>= strftime('%s',date('");
-        sb.append(str);
-        sb.append("')) and strftime('%s',date('20' || substr(paydate, 7, 2) || '-' || substr(paydate, 4, 2) || '-' || substr(paydate, 1, 2)))<=strftime('%s',date('");
-        sb.append(str2);
-        sb.append("')))) ORDER BY tid desc");
         return readableDatabase.rawQuery(sb.toString(), null);
     }
 

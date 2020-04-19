@@ -13,6 +13,8 @@ import android.os.Build.VERSION;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -65,7 +67,7 @@ public class PdfGenrateActivity extends AppCompatActivity {
     String S_OpenDate;
     String UserID = "";
     ArrayList<String> UserIDList = new ArrayList<>();
-    DatabaseHelper f459db;
+    DatabaseHelper databaseHelper;
     ListView list;
     BaseColor myColor = WebColors.getRGBColor("#f2f2f2");
     BaseColor myColor1 = WebColors.getRGBColor("#b6b6b6");
@@ -74,14 +76,15 @@ public class PdfGenrateActivity extends AppCompatActivity {
     private File dir;
     private File file;
     private String path;
-    private String textAnswer;
 
+    @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView((int) R.layout.activity_pdfgenrate);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        this.f459db = new DatabaseHelper(getApplicationContext());
+
+        databaseHelper = new DatabaseHelper(getApplicationContext());
         Intent intent = getIntent();
         this.UserID = intent.getStringExtra("User_ID");
         this.S_Name = intent.getStringExtra("P_NAME");
@@ -105,11 +108,11 @@ public class PdfGenrateActivity extends AppCompatActivity {
                 createPDF();
             } catch (FileNotFoundException | DocumentException e) {
                 e.printStackTrace();
-                Log.e("VML", e.getMessage());
             }
         }
     }
 
+    @Override
     @SuppressLint({"WrongConstant", "ResourceType"})
     public void onResume() {
         super.onResume();
@@ -366,7 +369,7 @@ public class PdfGenrateActivity extends AppCompatActivity {
 
     @SuppressLint({"WrongConstant"})
     private void GetPartyTransactionRecords() {
-        Cursor GetPartyTransaction = this.f459db.GetPartyTransaction(Long.parseLong(this.UserID));
+        Cursor GetPartyTransaction = databaseHelper.GetPartyTransaction(Long.parseLong(this.UserID));
         if (GetPartyTransaction.moveToFirst()) {
             do {
                 DisplayContact(GetPartyTransaction);
@@ -374,7 +377,7 @@ public class PdfGenrateActivity extends AppCompatActivity {
         } else {
             Toast.makeText(getBaseContext(), "No Transaction Found!", 1).show();
         }
-        this.f459db.close();
+        databaseHelper.close();
     }
 
     private void DisplayContact(Cursor cursor) {
@@ -386,8 +389,33 @@ public class PdfGenrateActivity extends AppCompatActivity {
         this.PartyNote.add(cursor.getString(5));
     }
 
+    @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.helpbutton, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_name) {
+            Toast.makeText(this, "You can delete report by long press.", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 }
