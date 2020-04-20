@@ -16,7 +16,6 @@ public class RegisterActivity extends AppCompatActivity {
     EditText edtpin;
     EditText edtpin1;
 
-    /* access modifiers changed from: protected */
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView((int) R.layout.activity_register);
